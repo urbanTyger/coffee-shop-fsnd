@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "b4198145-02fc-4b5d-9a9d-f3dc25cf1457",
+		"name": "Coffee Shop FSND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "drinks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for drinks\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/drinks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "drinks with incorrect method",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Method not allowed on drinks endpoint\", function () {",
+							"    pm.response.to.have.status(405);",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/drinks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "empty endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"index forbidden message\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "drinks-detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for drinks\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/drinks-detail",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks-detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post to drink details endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for drinks\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/drinks-detail",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks-detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST drinks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for drinks\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"{{$randomProductName}}\",\n    \"recipe\":[{\"name\": \"{{$randomProductName}}\", \"color\": \"{{$randomColor}}\", \"parts\": {{$randomInt}}},{\"name\": \"{{$randomProductName}}\", \"color\": \"{{$randomColor}}\", \"parts\": {{$randomInt}}},{\"name\": \"{{$randomProductName}}\", \"color\": \"{{$randomColor}}\", \"parts\": {{$randomInt}}}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/drinks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH drinks with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for drinks\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"water\",\n    \"recipe\":[{\"name\": \"{{$randomProductName}}\", \"color\": \"{{$randomColor}}\", \"parts\": {{$randomInt}}},1]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/drinks/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a drink with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test for deleting a drink\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"olive juice\",\n    \"recipe\":\"[{\\\"name\\\": \\\"olive oil\\\", \\\"color\\\": \\\"lightgreen\\\", \\\"parts\\\": 2},{\\\"name\\\": \\\"olive extract\\\", \\\"color\\\": \\\"yellow\\\", \\\"parts\\\": 3}]\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/drinks/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a drink with false id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 error for non existing drink id\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{active-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"olive juice\",\n    \"recipe\":\"[{\\\"name\\\": \\\"olive oil\\\", \\\"color\\\": \\\"lightgreen\\\", \\\"parts\\\": 2},{\\\"name\\\": \\\"olive extract\\\", \\\"color\\\": \\\"yellow\\\", \\\"parts\\\": 3}]\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/drinks/999",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"drinks",
+						"999"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "localhost:5000"
+		},
+		{
+			"key": "active-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkFzNUdiVmprSy1JTzVoUFN4eEt6ViJ9.eyJpc3MiOiJodHRwczovL2ZzbmR1ZGFjaXR5LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MGFkMjk0ZDhlNDhiODAwNjgxZmJmMGYiLCJhdWQiOiJmc25kLWJldmVyYWdlcyIsImlhdCI6MTYyMjU4MzMwNCwiZXhwIjoxNjIyNTkwNTA0LCJhenAiOiIybUR6emhjdU5jWjN3UXlwYzRqRE80NXZiYmlRZnRTaCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.k69ztCSLlbaAG96obQlOe97pKfry-OrJ8P3zRDArc0S56TY7Jpkn-gqNqKJRxhjtN9Asmvx_f_tHxN4VMgJROhAXZU_Mkhei8tf4SzbzkzGJUUNyUA1O0OnooVZeoBP9yILGcO68HWJCS5ijc8ueh2pCoDEdYB17w-PM3lN5lWbpobveXurHQljs---0BybWHnpDKUR0NbfotC8HYWFcnIv88Zxex6fL0TqyL_YPCPb0q-NxAJqvhiAK4wk4GtLnvbFvqDfeX0qZA4lDhEnqFXlqPxjtbYvSpDrF7E3Y7jsDAHq4KbiM-0xjJHEb9h5ZD2zmECy53U-WtXCR7afJiA"
+		}
+	]
+}
